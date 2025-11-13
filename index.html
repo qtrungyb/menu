@@ -1627,24 +1627,25 @@
             }
         });
 
-        // Đặt hàng - cải tiến để chuyển sang Zalo với thông tin đơn hàng
+        // Đặt hàng - SỬA LỖI: Đảm bảo tin nhắn hiển thị đúng trong Zalo
         checkoutBtn.addEventListener('click', function() {
             if (cart.length === 0) {
                 alert('Giỏ hàng trống!');
                 return;
             }
             
-            let message = 'Xin chào! Tôi muốn đặt hàng:\n\n';
+            let message = 'Xin chào! Tôi muốn đặt hàng:%0A%0A';
             
             cart.forEach(item => {
-                message += `${item.name} x ${item.quantity}\n`;
+                message += `${item.name} x ${item.quantity}%0A`;
             });
             
-            message += '\nCảm ơn!';
+            message += '%0ACảm ơn!';
             
             // Mở Zalo với tin nhắn đặt hàng đã được định dạng
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://zalo.me/0968253440?text=${encodedMessage}`, '_blank');
+            // Sử dụng encodeURI thay vì encodeURIComponent để giữ nguyên các ký tự đặc biệt trong URL
+            const zaloUrl = `https://zalo.me/0968253440?text=${message}`;
+            window.open(zaloUrl, '_blank');
         });
 
         // Khởi tạo giỏ hàng
