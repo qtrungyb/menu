@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Xôi & Nước</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff9f0;
+            color: #5a3921;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff9a3c, #ff6b6b);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            position: relative;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header {
+            background: linear-gradient(to right, #5a3921, #8b5a2b);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header i {
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .menu-item {
+            background-color: #fffaf3;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0e6d6;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .item-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #5a3921;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+
+        .special-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .xoi .special-badge {
+            background-color: #ff9a3c;
+        }
+
+        .drink-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .drink-category {
+            background-color: #fffaf3;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: #5a3921;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0e6d6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .matcha .category-title {
+            color: #2e7d32;
+            border-bottom-color: #a5d6a7;
+        }
+
+        .cacao .category-title {
+            color: #5d4037;
+            border-bottom-color: #bcaaa4;
+        }
+
+        .coffee .category-title {
+            color: #4e342e;
+            border-bottom-color: #8d6e63;
+        }
+
+        .category-title i {
+            color: #ff9a3c;
+        }
+
+        .matcha .category-title i {
+            color: #2e7d32;
+        }
+
+        .cacao .category-title i {
+            color: #5d4037;
+        }
+
+        .coffee .category-title i {
+            color: #4e342e;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #8c7b6b;
+            font-size: 0.9rem;
+            border-top: 1px solid #f0e6d6;
+        }
+
+        .instructions {
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .instructions h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-items, .drink-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MENU XÔI & NƯỚC</h1>
+            <p class="tagline">Hương vị truyền thống - Sáng tạo hiện đại</p>
+        </header>
+        <section class="menu-section">
+            <div class="section-header">
+                <i class="fas fa-utensils"></i>
+                <h2 class="section-title">XÔI</h2>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item xoi">
+                    <img src="https://sf-static.upanhlaylink.com/img/image_20251113cf782624a8fa239a6f1d5e5a582b199a.jpg" alt="Xôi Thịt Kho" class="item-image">
+                    <div class="item-name">
+                        <span>Xôi Thịt Kho</span>
+                        <span class="item-price">25.000đ</span>
+                    </div>
+                    <div class="special-badge">BÁN CHẠY</div>
+                </div>
+                
+                <div class="menu-item xoi">
+                    <img src="https://sf-static.upanhlaylink.com/img/image_20251113a649bc9b2ac4b9c7a63417dc5db9df83.jpg" alt="Xôi Gà Rô Ti" class="item-image">
+                    <div class="item-name">
+                        <span>Xôi Gà Rô Ti</span>
+                        <span class="item-price">25.000đ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <div class="section-header">
+                <i class="fas fa-coffee"></i>
+                <h2 class="section-title">NƯỚC</h2>
+            </div>
+            <div class="drink-categories">
+                <div class="drink-category matcha">
+                    <h3 class="category-title">
+                        <i class="fas fa-leaf"></i>
+                        Matcha
+                    </h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="https://drive.google.com/file/d/1NGXfsbjIN6FuqOMeRzSXv8_2pe7mL0uv/view?usp=drive_link" alt="Matcha Latte" class="item-image">
+                            <div class="item-name">
+                                <span>Matcha Latte</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1567306301408-9b74779a11af?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Matcha Kem Muối" class="item-image">
+                            <div class="item-name">
+                                <span>Matcha Kem Muối</span>
+                                <span class="item-price">20.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Matcha Sữa Gấu" class="item-image">
+                            <div class="item-name">
+                                <span>Matcha Sữa Gấu</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Matcha Sữa Chuối" class="item-image">
+                            <div class="item-name">
+                                <span>Matcha Sữa Chuối</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drink-category cacao">
+                    <h3 class="category-title">
+                        <i class="fas fa-mug-hot"></i>
+                        Cacao
+                    </h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cacao Latte" class="item-image">
+                            <div class="item-name">
+                                <span>Cacao Latte</span>
+                                <span class="item-price">20.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1592925121642-9d4a0f5868f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cacao Kem Muối" class="item-image">
+                            <div class="item-name">
+                                <span>Cacao Kem Muối</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cacao Sữa Gấu" class="item-image">
+                            <div class="item-name">
+                                <span>Cacao Sữa Gấu</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drink-category coffee">
+                    <h3 class="category-title">
+                        <i class="fas fa-coffee"></i>
+                        Cà Phê
+                    </h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cà Phê Nâu" class="item-image">
+                            <div class="item-name">
+                                <span>Cà Phê Nâu</span>
+                                <span class="item-price">20.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cà Phê Muối" class="item-image">
+                            <div class="item-name">
+                                <span>Cà Phê Muối</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bạc Sỉu" class="item-image">
+                            <div class="item-name">
+                                <span>Bạc Sỉu</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cà Phê Cốt Dừa" class="item-image">
+                            <div class="item-name">
+                                <span>Cà Phê Cốt Dừa</span>
+                                <span class="item-price">25.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Mở cửa từ 6:00 - 18:00 hàng ngày</p>
+            <p>Hạnh: 0968 253 440</p>
+        </footer>
+    </div>
+</body>
+</html>
